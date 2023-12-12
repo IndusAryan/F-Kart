@@ -26,16 +26,16 @@ input, select, button {
 
 .button-primary {
   color: rgb(33, 33, 33);
-  background-color: rgb(255, 216, 20);
-  border: 1px solid rgb(252, 210, 0);
+  
+  border: solid transparent;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+  
 }
 
 .button-primary:hover {
-  background-color: rgb(247, 202, 0);
-  border: 1px solid rgb(242, 194, 0);
+ color: #000;
+ background-color: #ff9f00;
 }
 
 .button-primary:active {

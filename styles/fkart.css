@@ -1,0 +1,162 @@
+.login {
+    width: fit-content;
+    height: 30px;
+    min-height: auto;
+    padding: 8px;
+    margin: auto;
+    color: rgb(0, 87, 201);
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-right: 200px;
+    min-width: 80px;
+}
+
+.login:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px grey;
+}
+
+.seller {
+    width: auto;
+    height: 30px;
+    min-height: auto;
+    margin: 15px;
+    margin-right: 10px;
+    color:white;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    min-width: auto;
+}
+
+.seller:hover {
+    color: orange ;
+}
+
+.product-name:hover {
+  color: #2874f0;
+  cursor: pointer;
+}
+
+.product-rating-stars {
+    width: auto;
+    padding: 2.5px;
+    max-height: 25px;
+    margin-right: 6px;
+    color: white;
+    border-radius: 10px;
+    background-color: green;
+}
+
+.product-rating-count {
+    color: grey;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.product-rating-count:hover {
+    color: #2874f0;
+}
+
+
+/*.product-image:hover {
+    transform: scale(1.5);
+    border-radius: 20px;
+    transition: 3s;
+}*/
+.flex-container {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    border: 0.5px solid silver;
+    border-radius: 5px;
+    max-width: 80%;
+    margin-bottom: 5px;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px;
+    gap: 50px;
+}
+
+@media(max-width:600px) {.flex-container {
+    
+    gap: 15px;
+    padding: 2px;
+    border: none;
+    }
+}
+
+.category {
+    color: #333;
+    font-weight: 300;
+}
+
+.category:hover {
+    color: #2874f0;
+    cursor: pointer;
+}
+
+.category img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.cartlove {
+    display: flex;
+    flex-direction: row;
+}
+
+.heart {
+    color: grey;
+    background-color: transparent;
+    border:none;
+}
+
+.heart:hover {
+    color: red;
+    transform: scale(1.2);
+    border: none;
+    box-shadow: 10 10 10px;
+}
+
+footer {
+    background-color: #343c4e;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .footer-links {
+    margin-top: 10px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  @media (max-width: 768px) {
+    footer {
+      padding: 10px;
+    }
+    
+    .footer-links {
+      margin-top: 5px;
+    }
+  }
+
+.product-rating-stars {
+    font-size: 0.9rem;
+  }
+
+ .product-rating-count {
+    font-size: 0.87rem;
+  } 
+
+  

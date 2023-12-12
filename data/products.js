@@ -1,3 +1,17 @@
+export function getProduct(productId) {
+
+  let matchingProduct;
+
+  products.forEach((product) => {
+
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
+
+  return matchingProduct;
+}
+
 export const products = [
 
   {
@@ -20,7 +34,7 @@ export const products = [
     image: "images/products/intermediate-composite-basketball.jpg",
     name: "Intermediate Size Basketball",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 127
     },
     priceCents: 2095,
@@ -66,7 +80,7 @@ export const products = [
     image: "images/products/6-piece-white-dinner-plate-set.jpg",
     name: "6 Piece White Dinner Plate Set",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 37
     },
     priceCents: 2067,
@@ -141,7 +155,7 @@ export const products = [
     image: "images/products/knit-athletic-sneakers-gray.jpg",
     name: "Waterproof Knit Athletic Sneakers - Gray",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 89
     },
     priceCents: 3390,
@@ -221,7 +235,7 @@ export const products = [
     image: "images/products/men-slim-fit-summer-shorts-gray.jpg",
     name: "Men's Slim-Fit Summer Shorts",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 160
     },
     priceCents: 1699,
@@ -251,7 +265,7 @@ export const products = [
     image: "images/products/facial-tissue-2-ply-18-boxes.jpg",
     name: "Ultra Soft Tissue 2-Ply - 18 Box",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 99
     },
     priceCents: 2374,
@@ -268,7 +282,7 @@ export const products = [
     image: "images/products/straw-sunhat.webp",
     name: "Straw Lifeguard Sun Hat",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 215
     },
     priceCents: 2200,
@@ -333,7 +347,7 @@ export const products = [
     image: "images/products/women-knit-ballet-flat-black.jpg",
     name: "Women's Knit Ballet Flat",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 326
     },
     priceCents: 2640,
@@ -383,7 +397,7 @@ export const products = [
     image: "images/products/duvet-cover-set-blue-twin.jpg",
     name: "Duvet Cover Set with Zipper Closure",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 456
     },
     priceCents: 2399,
@@ -433,7 +447,7 @@ export const products = [
     image: "images/products/men-athletic-shoes-green.jpg",
     name: "Men's Athletic Sneaker",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 229
     },
     priceCents: 3890,
@@ -526,7 +540,7 @@ export const products = [
     image: "images/products/round-airtight-food-storage-containers.jpg",
     name: "Round Airtight Food Storage Containers - 5 Piece",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 126
     },
     priceCents: 2899,
@@ -585,7 +599,7 @@ export const products = [
     image: "images/products/knit-athletic-sneakers-pink.webp",
     name: "Waterproof Knit Athletic Sneakers - Pink",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 89
     },
     priceCents: 3390,
@@ -601,7 +615,7 @@ export const products = [
     image: "images/products/countertop-blender-64-oz.jpg",
     name: "Countertop Blender - 64oz, 1400 Watts",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 3
     },
     priceCents: 10747,
