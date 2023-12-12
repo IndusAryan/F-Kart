@@ -16,18 +16,20 @@ products.forEach((product) => {
           </div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars * 10}.png">
+          <p class="product-rating-stars">
+              ${product.rating.stars.toFixed(1)+'★'}</p>
+            <!--<img class="product-rating-stars"
+              src="images/ratings/rating-${product.rating.stars * 10}.png">-->
             <div class="product-rating-count link-primary">
-              ${product.rating.count}
+              ${'('+product.rating.count+' Ratings)'}
             </div>
           </div>
 
           <div class="product-price">
-            $${formatCurrency(product.priceCents)}
+          ₹ ${formatCurrency(product.priceCents)}
           </div>
 
-          <div class="product-quantity-container">
+          <!--<div class="product-quantity-container">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -40,7 +42,7 @@ products.forEach((product) => {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-          </div>
+          </div>-->
 
           <div class="product-spacer"></div>
 
@@ -48,10 +50,12 @@ products.forEach((product) => {
             <img src="images/icons/checkmark.png">
             Added
           </div>
-
+          <div class="cartlove">
           <button class="add-to-cart-button button-primary addToCart" data-product-id = "${product.id}">
             Add to Cart
           </button>
+          <button class="heart">❤</button>
+          </div>
         </div>`;
 });
 

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Amazon Project</title>
+  <title>F-Kart Project</title>
 
-  <!-- This code is needed for responsive design to work.
-    (Responsive design = make the website look good on
-    smaller screen sizes like a phone or a tablet). -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Load a font called Roboto from Google Fonts. -->
@@ -17,20 +14,21 @@
   <link rel="stylesheet" href="styles/shared/general.css">
   <link rel="stylesheet" href="styles/shared/amazon-header.css">
   <link rel="stylesheet" href="styles/pages/amazon.css">
+  <link rel="stylesheet" href="styles/fkart.css">
 </head>
 <body>
 <div class="amazon-header">
   <div class="amazon-header-left-section">
     <a href="index.html" class="header-link">
       <img class="amazon-logo"
-           src="images/amazon-logo-white.png">
+           src="images\flipkart-logo-svgrepo-com(1).svg">
       <img class="amazon-mobile-logo"
            src="images/amazon-mobile-logo-white.png">
     </a>
   </div>
 
   <div class="amazon-header-middle-section">
-    <input class="search-bar" type="text" placeholder="Search">
+    <input class="search-bar" type="text" placeholder="Search for products, brands and more">
 
     <button class="search-button">
       <img class="search-icon" src="images/icons/search-icon.png">
@@ -38,20 +36,68 @@
   </div>
 
   <div class="amazon-header-right-section">
+    <button class="login">Login</button>
+    <button class="seller">Become a Seller</button>
     <a class="orders-link header-link" href="orders.html">
-      <span class="returns-text">Returns</span>
-      <span class="orders-text">& Orders</span>
+      <!--<span class="returns-text">Returns</span>-->
+      <span class="orders-text">My Orders</span>
     </a>
 
     <a class="cart-link header-link" href="checkout.html">
       <img class="cart-icon" src="images/icons/cart-icon.png">
-      <div class="cart-quantity ">3</div>
+      <div class="cart-quantity ">0</div>
       <div class="cart-text">Cart</div>
     </a>
   </div>
 </div>
 
 <div class="main">
+
+
+
+  <div class="flex-container">
+    <a
+    class="category" aria-label="Top Offers">
+        <div>
+            <img class="_2puWtW _3a3qyb" alt="Top Offers" src="https://rukminim1.flixcart.com/fk-p-flap/80/80/image/085406bae47866d5.png?q=100">
+            <p>Offers</p>
+        </div>
+    </a>
+  
+    <a
+    class="category" aria-label="Top Offers">
+        <div>
+            <img class="_2puWtW _3a3qyb" alt="Top Offers" src="https://rukminim1.flixcart.com/fk-p-flap/80/80/image/64f1cc66052c66ef.png?q=100">
+            <p>Mobiles</p>
+        </div>
+    </a>
+
+    <a
+    class="category" aria-label="Top Offers">
+        <div>
+            <img class="_2puWtW _3a3qyb" alt="Top Offers" src="https://rukminim1.flixcart.com/fk-p-flap/80/80/image/022cf9a62e8bd22c.png?q=100">
+            <p>Grocery</p>
+        </div>
+    </a>
+
+    <a
+    class="category" aria-label="Top Offers">
+        <div>
+            <img class="_2puWtW _3a3qyb" alt="Top Offers" src="https://rukminim1.flixcart.com/fk-p-flap/80/80/image/6dbed7ba5417672f.jpg?q=100">
+            <p>Fashion</p>
+        </div>
+    </a>
+
+    <a
+    class="category" aria-label="Top Offers">
+        <div>
+            <img class="_2puWtW _3a3qyb" alt="Top Offers" src="https://rukminim1.flixcart.com/fk-p-flap/80/80/image/f9c7aaa5f5455ae7.png?q=100">
+            <p>Kitchen</p>
+        </div>
+    </a>
+  </div>
+
+
   <div class="products-grid js-productsGrid">
 
     <div class="product-spacer"></div>
@@ -66,6 +112,17 @@
     </button>
   </div>
 </div>
+
+<footer>
+  <p>&copy; 2023 F-Kart International</p>
+  <div class="footer-links">
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
 
 <script type = "module" src="scripts/amazon.js"></script>
 </body>
