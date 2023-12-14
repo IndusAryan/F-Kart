@@ -19,24 +19,7 @@
   <link rel="stylesheet" href="styles/checkout.css">
 </head>
 <body>
-<div class="checkout-header">
-  <div class="header-content">
-    <div class="checkout-header-left-section">
-      <a href="index.html">
-        <img class="fkart-logo" src="images/flipkart-logo-svgrepo-com(1).svg">
-        <img class="fkart-mobile-logo" src="images/flipkart-logo-svgrepo-com(1).svg">
-      </a>
-    </div>
-
-    <div class="checkout-header-middle-section">
-      Checkout (<a class="return-to-home-link"
-                   href="index.html">3 items</a>)
-    </div>
-
-    <div class="checkout-header-right-section">
-      <p>👜</p>
-    </div>
-  </div>
+  <div class="checkout-header js-checkout-header">
 </div>
 
 <div class="main">
@@ -52,7 +35,11 @@
   </div>
 </div>
 
+
 <script type = "module" src="scripts/checkout.js"></script>
+<script type = "module" src="scripts/checkout/checkoutHeader.js"></script>
+<script type = "module" src="scripts/checkout/paymentSummary.js"></script>
+
 
 </body>
 </html>

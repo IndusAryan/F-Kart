@@ -5,7 +5,8 @@ import { formatCurrency } from './utils/money.js';
 let productsHTML = '';
 
 products.forEach((product) => {
-    productsHTML += `<div class="product-container">
+    productsHTML += `
+    <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -61,15 +62,28 @@ products.forEach((product) => {
 
 document.querySelector('.js-productsGrid').innerHTML = productsHTML;
 
-function updateCartQuantity() {
-    var cartQuantity = 0;
+export function updateCartQuantity() {
+  
+  let cartQuantity = 0;
+
+  // Retrieve cart data from local storage
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
 
     cart.forEach((cartItem) => {
         cartQuantity += cartItem.quantity;
     })
 
+    
     document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+
+    localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity));
+
+    console.log('added items ' + cartQuantity);
+
+    return cartQuantity;
 }
+
 
 document.querySelectorAll('.addToCart').forEach((button) => {
     button.addEventListener('click', () => {
@@ -81,3 +95,5 @@ document.querySelectorAll('.addToCart').forEach((button) => {
 
     });
 });
+// Initial update of cart quantity on page load
+updateCartQuantity();

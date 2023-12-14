@@ -4,6 +4,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderBilling } from "./paymentSummary.js";
+import { renderCheckoutCount } from "./checkoutHeader.js";
 
 console.log(dayjs());
 
@@ -42,15 +43,15 @@ export function renderOrderPage() {
                     ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                    $${formatCurrency(matchingProduct.priceCents)}
+                    ₹${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                     <span>
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                     </span>
-                    <span class="update-quantity-link link-primary">
+                    <!--<span class="update-quantity-link link-primary">
                     Update
-                    </span>
+                    </span>-->
                     <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
                     </span>
@@ -76,7 +77,7 @@ export function renderOrderPage() {
             const today = dayjs();
             const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
             const dateString = deliveryDate.format('dddd, MMMM D');
-            const priceString = deliveryOptions.priceCents === 0 ? 'FREE' :`$${formatCurrency(deliveryOption.priceCents)} -`;
+            const priceString = deliveryOptions.priceCents === 0 ? 'FREE' :`₹ ${formatCurrency(deliveryOption.priceCents)} -`;
             const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
 
             html += `
@@ -115,6 +116,7 @@ export function renderOrderPage() {
             container.remove();
             saveToStorage();
             renderBilling();
+            renderCheckoutCount();
         });
     });
 

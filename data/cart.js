@@ -1,3 +1,5 @@
+import { orders } from "../scripts/order.js";
+
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if (!cart) {
@@ -12,9 +14,28 @@ if (!cart) {
     }];
 }
 
+checkoutItemCount();
+
+export function checkoutItemCount () {
+
+    if (cart.length > 0) {
+
+        var totalItems = cart.length;
+    
+        console.log(totalItems);
+    
+        // Check if the element exists before manipulating it
+        var returnToHomeLink = document.querySelector('.return-to-home-link');
+        if (returnToHomeLink !== null) {
+            returnToHomeLink.innerHTML = totalItems + ' Products';
+        }
+    }
+}
+
 export function saveToStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
 
 export function addToCart(productId) {
 
@@ -49,7 +70,7 @@ export function removeFromCart(productId) {
         if (cartItem.productId !== productId) {
 
             newCart.push(cartItem);
-
+            
         }
     });
 
@@ -70,5 +91,14 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     sameItem.deliveryOptionId = deliveryOptionId;
 
     saveToStorage();
+   
+}
 
+export function clearCart() {
+    cart = [];
+    saveToStorage();
+}
+
+export function saveOrders() {
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
