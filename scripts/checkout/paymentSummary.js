@@ -1,10 +1,13 @@
-import { cart } from "../../data/cart.js";
+import { cart,clearCart,saveOrders } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
+import { orders } from "../order.js";
+
+console.log(orders);
 
 export function renderBilling() {
-
+    let cartQuantity = 0;
     let productPriceCents = 0;
     let shippingPriceCents = 0;
 
@@ -15,6 +18,8 @@ export function renderBilling() {
 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         shippingPriceCents += deliveryOption.priceCents;
+
+        cartQuantity += cartItem.quantity;
 
     });
 
@@ -37,7 +42,7 @@ export function renderBilling() {
       </div>
 
       <div class="payment-summary-row">
-        <div>Items (3) :</div>
+        <div>Items (${cartQuantity}) :</div>
         <div class="payment-summary-money">₹ ${formatCurrency(productPriceCents)}</div>
       </div>
 
@@ -52,7 +57,7 @@ export function renderBilling() {
       </div>
 
       <div class="payment-summary-row">
-        <div>GST (18%) :</div>
+        <div>GST (12%) :</div>
         <div class="payment-summary-money">₹ ${formatCurrency(gstTax)}</div>
       </div>
 
@@ -69,4 +74,18 @@ export function renderBilling() {
     ;
 
     document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
+    
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Your code here, including the event listener
+  document.querySelector('.place-order-button').addEventListener('click', () => {
+      // Clear the cart and update the orders array
+      orders.push(...cart);
+      console.log(orders);
+      saveOrders();
+      clearCart();
+      // Refresh the page or redirect to the order summary page
+      window.open("orders.html",'_blank'); // You might want to replace this with a proper page redirection
+  });
+});

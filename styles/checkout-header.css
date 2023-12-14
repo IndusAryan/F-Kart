@@ -61,7 +61,7 @@
   text-align: center;
   color: white;
   font-size: 25px;
-  font-weight: 500;
+  font-weight: normal;
 
   display: flex;
   justify-content: center;
@@ -69,9 +69,11 @@
 
 .return-to-home-link {
   color: white;
-  font-size: 23px;
+  font-size: 25px;
   text-decoration: none;
-  cursor: pointer;
+  cursor: none;
+  font-weight: 500;
+  
 }
 
 @media (max-width: 1000px) {
