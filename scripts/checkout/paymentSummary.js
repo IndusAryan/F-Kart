@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.place-order-button').addEventListener('click', () => {
       // Clear the cart and update the orders array
       orders.push(...cart);
-      notifyTelegram();
-      document.querySelector('.place-order-button').textContent = 'Checking out...';
       saveOrders();
+      document.querySelector('.place-order-button').textContent = 'Checking out...';
+      notifyTelegram();
       clearCart();
       
       setTimeout(function() {
@@ -95,8 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Refresh the page or redirect to the order summary page
       setTimeout(function() {
-        window.open("orders.html",'_self'); 
-      }, 2500);
+        window.open("orders.html",'_blank'); 
+        window.location.reload();
+      }, 3000);
 
   });
 

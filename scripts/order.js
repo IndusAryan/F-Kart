@@ -100,7 +100,7 @@ Object.keys(ordersByDate).forEach((dateString) => {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+//document.addEventListener('DOMContentLoaded', () => {
   
     var cartCountinOrder = cart.length;
     document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open('index.html','_self')
    });
   
-});
+//});
 
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
