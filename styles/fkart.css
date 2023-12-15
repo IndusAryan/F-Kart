@@ -153,6 +153,10 @@ footer {
     color: #fff;
     padding: 5px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: none;
   }
   
   .footer-links {
@@ -238,4 +242,8 @@ footer {
         left: 50%;
         font-size: 10px;
       }
+    }
+
+    .footer-links a:hover {
+      color: #ff9f00;
     }

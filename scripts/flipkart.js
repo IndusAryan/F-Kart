@@ -112,3 +112,15 @@ function getAndStoreUsername() {
 }
 
 getAndStoreUsername();
+
+window.addEventListener('scroll', function() {
+  var footer = document.getElementById('site-footer');
+  var scrollPosition = window.innerHeight + window.scrollY;
+  var pageHeight = document.body.offsetHeight;
+
+  if (scrollPosition >= pageHeight) {
+    footer.style.display = 'block';
+  } else {
+    footer.style.display = 'none';
+  }
+});
