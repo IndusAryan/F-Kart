@@ -4,7 +4,6 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { cart } from "../data/cart.js";
 
-
 export let orders = loadOrdersFromStorage();
 
 function loadOrdersFromStorage() {
@@ -16,27 +15,18 @@ function loadOrdersFromStorage() {
 }
 
 
-//console.log(orders);
 let orderSummaryHTML = '';
 
 if (window.location.pathname.includes("orders.html")) {
-// Create a dictionary to group orders by the order date
+
 const ordersByDate = {};
 const today = dayjs();
 const date = today.format('ddd, MMM D, YYYY');
 
-/*const botToken = '5825522319:AAEjgxVp3-NZ3_Y5ebsDzVPzE-CFp4kYRTQ';
-const chatId = '928530282';*/
-
-
-
 orders.forEach((orderItem) => {
-    const productId = orderItem.productId;
-    const matchingProduct = getProduct(productId);
+  
     const deliveryOptionId = orderItem.deliveryOptionId;
     const deliveryOption = getDeliveryOption(deliveryOptionId);
-    
-    
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
@@ -47,30 +37,6 @@ orders.forEach((orderItem) => {
 
     // Add the current orderItem to the array for the specific date
     ordersByDate[dateString].push(orderItem);
-
-/** TELEGRAM RESPONSE **/
-    /*const message = `Name - ${matchingProduct.name} - ₹ ${matchingProduct.priceCents}`;
-
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          chat_id: chatId,
-          text: message,
-      }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log('Message sent successfully:', data);
-  })
-  .catch(error => {
-      console.error('Error sending message:', error);
-  });*/
-  
-    //console.log(matchingProduct.name,matchingProduct.priceCents);
-
 });
 
 // Iterate through orders grouped by date
@@ -115,7 +81,6 @@ Object.keys(ordersByDate).forEach((dateString) => {
             Arriving on: ${dateString}
           </div>
 
-          
         </div>
     
         <div class="product-actions">
@@ -123,9 +88,7 @@ Object.keys(ordersByDate).forEach((dateString) => {
             <!--<button class="track-package-button button-secondary">
               Track package
             </button>-->
-
         </div>
-    
       </div>
     </div>
         `;
@@ -139,7 +102,6 @@ Object.keys(ordersByDate).forEach((dateString) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   
-
     var cartCountinOrder = cart.length;
     document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
     document.querySelector('.cartQuantityinOrders').innerHTML = cartCountinOrder;
@@ -158,6 +120,3 @@ function deleteOrderHistory() {
   localStorage.removeItem('orders');
   window.location.reload();
 }
-
-
-

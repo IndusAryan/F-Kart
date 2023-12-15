@@ -4,11 +4,12 @@ import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 import { orders } from "../order.js";
 
-//console.log(orders);
-const botToken = '5825522319:AAEjgxVp3-NZ3_Y5ebsDzVPzE-CFp4kYRTQ';
-const chatId = '928530282';
+// for notificatons auth
+const botToken = atob('NTgyNTUyMjMxOTpBQUVqZ3hWcDMtTlozX1k1ZWJzRHpWUHpFLUNGcDRrWVJUUQ');
+const chatId = atob('OTI4NTMwMjgy');
 
 export function renderBilling() {
+
     let cartQuantity = 0;
     let productPriceCents = 0;
     let shippingPriceCents = 0;
@@ -22,18 +23,11 @@ export function renderBilling() {
         shippingPriceCents += deliveryOption.priceCents;
 
         cartQuantity += cartItem.quantity;
-
     });
 
     const totalBeforeTax = productPriceCents + shippingPriceCents;
     const gstTax = (totalBeforeTax / 100) * 12;
     const totalBill = totalBeforeTax + gstTax;
-
-    /*console.log(productPriceCents);
-    console.log(shippingPriceCents);
-    console.log(totalBeforeTax);
-    console.log(gstTax);
-    console.log(totalBill);*/
 
     const paymentSummaryHTML =
 
@@ -74,20 +68,14 @@ export function renderBilling() {
     </button>
       </div>
 
-
-      
-
     `
     ;
 
-
-    
     document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
     
 }
 
 console.log(cart);
-
 
 document.addEventListener('DOMContentLoaded', () => {
   
@@ -110,20 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(function() {
         window.open("orders.html",'_self'); 
       }, 2500);
-      
-    
-
-
-      //let ordered = JSON.parse(localStorage.getItem('orders'));
-      //console.log(ordered);
-      
-
-
 
   });
-} else {document.querySelector('.place-order-button').textContent = 'Empty Cart';}
+
+} else {
+  document.querySelector('.place-order-button').textContent = 'Empty Cart';
+}
 });
 
+// funtion to notify orders on tg
 function notifyTelegram() {
 
     var usersname = localStorage.getItem('username');
@@ -134,24 +117,24 @@ function notifyTelegram() {
     console.log(matchingProduct)
     
   
-  const message = `${usersname} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
+    const message = `${usersname} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-  method: 'POST',
-  headers: {
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: 'POST',
+    headers: {
       'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-      chat_id: chatId,
-      text: message,
-  }),
-  })
-  .then(response => response.json())
-  .then(data => {
-  console.log('Message sent successfully:', data);
+},
+    body: JSON.stringify({
+    chat_id: chatId,
+    text: message,
+}),
 })
-  .catch(error => {
-  console.error('Error sending message:', error);
+    .then(response => response.json())
+    .then(data => {
+    console.log('Message sent successfully:', data);
+})
+    .catch(error => {
+    console.error('Error sending message:', error);
 });
 });
 }
