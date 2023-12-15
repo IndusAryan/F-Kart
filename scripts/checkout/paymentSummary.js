@@ -106,34 +106,49 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // funtion to notify orders on tg
-function notifyTelegram() {
+async function notifyTelegram() {
+  try {
+      var usersname = localStorage.getItem('username');
+      const notifyPromises = orders.map(async (orderItem) => {
+          const productId = orderItem.productId;
+          const matchingProduct = getProduct(productId);
+          console.log(matchingProduct);
 
-    var usersname = localStorage.getItem('username');
+          const message = `${usersname.toUpperCase()} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
 
-    orders.forEach((orderItem) => {
-    const productId = orderItem.productId;
-    const matchingProduct = getProduct(productId);
-    console.log(matchingProduct)
-    
-  
-    const message = `${usersname.toUpperCase()} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
+          const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  chat_id: chatId,
+                  text: message,
+              }),
+          });
 
-    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-},
-    body: JSON.stringify({
-    chat_id: chatId,
-    text: message,
-}),
-})
-    .then(response => response.json())
-    .then(data => {
-    console.log('Message sent successfully:', data);
-})
-    .catch(error => {
-    console.error('Error sending message:', error);
-});
-});
+          const data = await response.json();
+          console.log('Message sent successfully:', data);
+
+          // Return the processed orderItem
+          return { ...orderItem, processed: true };
+      });
+
+      // Wait for all fetch requests to complete
+      const processedOrders = await Promise.all(notifyPromises);
+
+      // Update the orders array with the processed orders
+      processedOrders.forEach((processedOrder) => {
+          const index = orders.findIndex(orderItem => orderItem.productId === processedOrder.productId);
+          if (index !== -1) {
+              orders[index] = processedOrder;
+          }
+      });
+
+      
+      window.location.href = 'orders.html';
+  } catch (error) {
+      console.error('Error sending message:', error);
+  }
 }
+
