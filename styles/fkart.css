@@ -16,11 +16,19 @@
 
 @media(max-width: 500px) {
   .login {
-   margin-right: 20px;
+   margin-right: -10px;
   }
   .flipkart-header-middle-section {
-    max-width: 60px;
-    margin-left: 0px; 
+    display: none;
+  }
+}
+
+@media(max-width: 1200px) {
+  .flipkart-header-middle-section {
+    max-width: 250px;
+  }
+  .search-bar {
+    font-size: 0px;
   }
 }
 
