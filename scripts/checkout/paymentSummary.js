@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       document.querySelector('.place-order-button').textContent = 'Checking out...';
       saveOrders();
-      clearCart();
       notifyTelegram();
-
+      clearCart();
+      
       setTimeout(function() {
         document.querySelector('.place-order-button').textContent = 'Order placed ! Redirecting...';
       }, 1000);
@@ -117,7 +117,7 @@ function notifyTelegram() {
     console.log(matchingProduct)
     
   
-    const message = `${usersname} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
+    const message = `${usersname.toUpperCase()} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
     method: 'POST',
