@@ -97,7 +97,7 @@ Object.keys(ordersByDate).forEach((dateString) => {
     orderSummaryHTML += '</div>';
     
 });
-}
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
     document.querySelector('.cartQuantityinOrders').innerHTML = cartCountinOrder;
 
-   document.querySelector('.deleteHistory').addEventListener('click',() => {
+    document.querySelector('.deleteHistory').addEventListener('click',() => {
     deleteOrderHistory();
    });
       
@@ -119,4 +119,5 @@ document.addEventListener('DOMContentLoaded', () => {
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
   window.location.reload();
+}
 }
