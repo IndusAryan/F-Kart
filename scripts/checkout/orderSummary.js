@@ -45,14 +45,20 @@ export function renderOrderPage() {
                 </div>
                 <div class="product-quantity">
                     <span>
+                    <img class="fassured" src ="images/icons/fassured.png">
                     Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                     </span>
+                    
                     <!--<span class="update-quantity-link link-primary">
                     Update
                     </span>-->
+                   
+                  
+                    
                     <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
                     </span>
+                    
                 </div>
                 </div>
 

@@ -247,3 +247,9 @@ footer {
     .footer-links a:hover {
       color: #ff9f00;
     }
+    
+    .fassured {
+      max-height: 64px;
+      max-width: 64px;
+    
+    }
