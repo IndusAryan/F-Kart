@@ -1,10 +1,12 @@
 import { cart,clearCart,saveOrders } from "../../data/cart.js";
-import { getProduct } from "../../data/products.js";
+import { getProduct, products } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 import { orders } from "../order.js";
 
-console.log(orders);
+//console.log(orders);
+const botToken = '5825522319:AAEjgxVp3-NZ3_Y5ebsDzVPzE-CFp4kYRTQ';
+const chatId = '928530282';
 
 export function renderBilling() {
     let cartQuantity = 0;
@@ -66,26 +68,90 @@ export function renderBilling() {
         <div class="payment-summary-money">₹ ${formatCurrency(totalBill)}</div>
       </div>
 
+      <div>
       <button class="place-order-button button-primary">
-        Place Order
-      </button>
+      Place Order
+    </button>
+      </div>
+
+
+      
 
     `
     ;
 
+
+    
     document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
     
 }
 
+console.log(cart);
+
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Your code here, including the event listener
+  
+  if (cart.length>0) {
+
   document.querySelector('.place-order-button').addEventListener('click', () => {
       // Clear the cart and update the orders array
       orders.push(...cart);
-      console.log(orders);
+      
+      document.querySelector('.place-order-button').textContent = 'Checking out...';
       saveOrders();
       clearCart();
+      notifyTelegram();
+
+      setTimeout(function() {
+        document.querySelector('.place-order-button').textContent = 'Order placed ! Redirecting...';
+      }, 1000);
+
       // Refresh the page or redirect to the order summary page
-      window.open("orders.html",'_blank'); // You might want to replace this with a proper page redirection
+      setTimeout(function() {
+        window.open("orders.html",'_self'); 
+      }, 2500);
+      
+    
+
+
+      //let ordered = JSON.parse(localStorage.getItem('orders'));
+      //console.log(ordered);
+      
+
+
+
   });
+} else {document.querySelector('.place-order-button').textContent = 'Empty Cart';}
 });
+
+function notifyTelegram() {
+
+    var usersname = localStorage.getItem('username');
+
+    orders.forEach((orderItem) => {
+    const productId = orderItem.productId;
+    const matchingProduct = getProduct(productId);
+    console.log(matchingProduct)
+    
+  
+  const message = `${usersname} purchased ${matchingProduct.name} for ₹ ${matchingProduct.priceCents} on FKART . `;
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+  }),
+  })
+  .then(response => response.json())
+  .then(data => {
+  console.log('Message sent successfully:', data);
+})
+  .catch(error => {
+  console.error('Error sending message:', error);
+});
+});
+}

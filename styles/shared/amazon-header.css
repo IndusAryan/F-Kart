@@ -16,7 +16,7 @@
 }
 
 .amazon-header-left-section {
-  width: 180px;
+  width: 250px;
 
 }
 
@@ -24,6 +24,7 @@
   .amazon-header-left-section {
     width: unset;
   }
+
 }
 
 .header-link {
@@ -60,8 +61,8 @@
 
 .amazon-header-middle-section {
   flex: 1;
-  max-width: 650px;
-  margin-left: -300px;
+  max-width: 600px;
+  margin-left: -00px;
   margin-right: 10px;
   height: auto;
   display: flex;
@@ -76,6 +77,17 @@
   border: none;
   margin-top: 3px;
   border-radius: 8px;
+}
+
+@media(max-width: 650px) {
+  .amazon-header-middle-section {
+    max-width: 100px;
+    margin-left: 0px; 
+  }
+
+  .search-bar {
+    font-size: 0px;
+  }
 }
 
 .amazon-header-middle-section:hover {
@@ -101,7 +113,7 @@
 }
 
 .amazon-header-right-section {
-  width: 180px;
+  width: 300px;
   flex-shrink: 0;
   display: flex;
   justify-content: end;
