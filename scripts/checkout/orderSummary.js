@@ -6,7 +6,7 @@ import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.j
 import { renderBilling } from "./paymentSummary.js";
 import { renderCheckoutCount } from "./checkoutHeader.js";
 
-console.log(dayjs());
+//console.log(dayjs());
 
 export function renderOrderPage() {
 
@@ -128,6 +128,8 @@ export function renderOrderPage() {
             updateDeliveryOption(productId, deliveryOptionId);
             renderOrderPage();
             renderBilling();
+            saveToStorage();
+            window.location.reload();
         });
     });
 }

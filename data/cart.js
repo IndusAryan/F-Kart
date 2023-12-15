@@ -22,7 +22,7 @@ export function checkoutItemCount () {
 
         var totalItems = cart.length;
     
-        console.log(totalItems);
+        //console.log(totalItems);
     
         // Check if the element exists before manipulating it
         var returnToHomeLink = document.querySelector('.return-to-home-link');

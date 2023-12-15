@@ -13,7 +13,7 @@ export function renderCheckoutCount() {
       <div class="checkout-header-left-section">
         <a href="index.html">
           <img class="fkart-logo" src="images/flipkart-logo-svgrepo-com(1).svg">
-          <img class="fkart-mobile-logo" src="images/flipkart-logo-svgrepo-com(1).svg">
+          <img class="fkart-mobile-logo" src="images/flipkart-logo-svgrepo-com(2).svg">
         </a>
       </div>
   

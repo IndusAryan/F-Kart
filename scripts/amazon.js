@@ -79,7 +79,7 @@ export function updateCartQuantity() {
 
     localStorage.setItem('cartQuantity', JSON.stringify(cartQuantity));
 
-    console.log('added items ' + cartQuantity);
+    //console.log('added items ' + cartQuantity);
 
     return cartQuantity;
 }
@@ -87,9 +87,9 @@ export function updateCartQuantity() {
 
 document.querySelectorAll('.addToCart').forEach((button) => {
     button.addEventListener('click', () => {
-
+        
         const productId = button.dataset.productId;
-
+        showSnackbar();
         addToCart(productId);
         updateCartQuantity();
 
@@ -97,3 +97,38 @@ document.querySelectorAll('.addToCart').forEach((button) => {
 });
 // Initial update of cart quantity on page load
 updateCartQuantity();
+
+function showSnackbar() {
+  // Get the snackbar element
+  var snackbar = document.getElementById("snackbar");
+
+  // Display the snackbar
+  snackbar.style.display = "block";
+
+  // Hide the snackbar after 3 seconds (adjust as needed)
+  setTimeout(function(){
+    snackbar.style.display = "none";
+  }, 2000);
+}
+
+// Function to get the username from the user
+function getAndStoreUsername() {
+  // Check if the username is already stored
+  var storedUsername = localStorage.getItem('username');
+
+  if (!storedUsername) {
+    // If not stored, prompt the user for their username
+    var username = prompt("Please set a username 😊 :");
+
+    if (username) {
+      // Store the username in local storage
+      localStorage.setItem('username', username);
+      //alert("Welcome, " + username + "!");
+    } else {
+      alert("Please set a username first 😔. Refresh the page and try again.");
+    }
+  }
+}
+
+// Call the function when the page loads
+getAndStoreUsername();

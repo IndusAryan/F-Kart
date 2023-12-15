@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="styles/shared/general.css">
     <link rel="stylesheet" href="styles/shared/amazon-header.css">
     <link rel="stylesheet" href="styles/pages/orders.css">
+    <link rel="stylesheet" href="styles/fkart.css">
   </head>
   <body>
     <div class="amazon-header">
@@ -25,7 +26,7 @@
           <img class="amazon-logo"
             src="images/flipkart-logo-svgrepo-com(1).svg">
           <img class="amazon-mobile-logo"
-            src="images/flipkart-logo-svgrepo-com(1).svg">
+            src="images/flipkart-logo-svgrepo-com(2).svg">
         </a>
       </div>
 
@@ -38,10 +39,7 @@
       </div>
 
       <div class="amazon-header-right-section">
-        <a class="orders-link header-link" href="orders.html">
-          <span class="returns-text">Returns</span>
-          <span class="orders-text">& Orders</span>
-        </a>
+       
 
         <a class="cart-link header-link" href="checkout.html">
           <img class="cart-icon" src="images/icons/cart-icon.png">
@@ -52,19 +50,22 @@
     </div>
 
     <div class="main">
-      <div class="page-title">Your Order History :</div>
-
-      <div class="orders-grid">
-        <div class="order-container js-myorders">
-          
-          
-
+      <div class="page-title">Your Order History :
         
+      </div>
+      <button class="deleteHistory">
+        ⛒ Clear History
+      </button>
+      <button class="deleteHistory gotohome">
+        🏠︎ Go to Homepage
+      </button>
+      <div class="orders-grid js-myorders">
+
       </div>
     </div>
 
     <script type = "module" src="scripts/order.js"></script>
-    
+    <script type="module" src="scripts/tracking.js"></script>
 
   </body>
 </html>
