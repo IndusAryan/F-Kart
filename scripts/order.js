@@ -13,12 +13,12 @@ function loadOrdersFromStorage() {
     }
     return [];
 }
-
+if (window.location.pathname.includes("orders.html")) {
 console.log(orders);
 
 let orderSummaryHTML = '';
 
-if (window.location.pathname.includes("orders.html")) {
+
 
 const ordersByDate = {};
 const today = dayjs();
@@ -102,19 +102,26 @@ Object.keys(ordersByDate).forEach((dateString) => {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-    var cartCountinOrder = cart.length;
-    document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
-    document.querySelector('.cartQuantityinOrders').innerHTML = cartCountinOrder;
+  // The DOM is fully loaded at this point
 
-    document.querySelector('.deleteHistory').addEventListener('click',() => {
-    deleteOrderHistory();
-   });
-      
-   document.querySelector('.gotohome').addEventListener('click',() => {
-    window.open('index.html','_self')
-   });
-  
+  var cartCountinOrder = cart.length;
+  var myOrdersElement = document.querySelector('.js-myorders');
+  var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
+
+  if (myOrdersElement && cartQuantityElement) {
+      myOrdersElement.innerHTML = orderSummaryHTML;
+      cartQuantityElement.innerHTML = cartCountinOrder;
+
+      document.querySelector('.deleteHistory').addEventListener('click', () => {
+          deleteOrderHistory();
+      });
+
+      document.querySelector('.gotohome').addEventListener('click', () => {
+          window.open('index.html', '_self');
+      });
+  } else {
+      console.error('One or both of the elements not found.');
+  }
 });
 
 function deleteOrderHistory() {
