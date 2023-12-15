@@ -6,8 +6,6 @@ import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.j
 import { renderBilling } from "./paymentSummary.js";
 import { renderCheckoutCount } from "./checkoutHeader.js";
 
-//console.log(dayjs());
-
 export function renderOrderPage() {
 
     let cartSummaryHTML = '';
@@ -96,8 +94,8 @@ export function renderOrderPage() {
         </div>
         </div>
     </div>
-    `
 
+    `
         });
 
         return html;
