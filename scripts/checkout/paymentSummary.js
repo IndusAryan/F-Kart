@@ -84,10 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.place-order-button').addEventListener('click', () => {
       // Clear the cart and update the orders array
       orders.push(...cart);
-      
+      notifyTelegram();
       document.querySelector('.place-order-button').textContent = 'Checking out...';
       saveOrders();
-      notifyTelegram();
       clearCart();
       
       setTimeout(function() {
