@@ -14,6 +14,7 @@ function loadOrdersFromStorage() {
     return [];
 }
 
+console.log(orders);
 
 let orderSummaryHTML = '';
 
@@ -100,7 +101,7 @@ Object.keys(ordersByDate).forEach((dateString) => {
 
 
 
-//document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   
     var cartCountinOrder = cart.length;
     document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
@@ -114,7 +115,7 @@ Object.keys(ordersByDate).forEach((dateString) => {
     window.open('index.html','_self')
    });
   
-//});
+});
 
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
