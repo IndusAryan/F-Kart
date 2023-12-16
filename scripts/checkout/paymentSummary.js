@@ -1,8 +1,8 @@
-import { cart,clearCart,saveOrders } from "../../data/cart.js";
-import { getProduct, products } from "../../data/products.js";
+import { cart,clearCart } from "../../data/cart.js";
+import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
-import { orders } from "../order.js";
+import { orders,saveOrders } from "../order.js";
 
 // for notificatons auth
 const botToken = atob('NTgyNTUyMjMxOTpBQUVqZ3hWcDMtTlozX1k1ZWJzRHpWUHpFLUNGcDRrWVJUUQ');

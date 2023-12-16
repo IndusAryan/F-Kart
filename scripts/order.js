@@ -3,7 +3,9 @@ import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import { cart } from "../data/cart.js";
 
-export let orders = loadOrdersFromStorage();
+export function saveOrders() {
+  localStorage.setItem('orders', JSON.stringify(orders));
+}
 
 function loadOrdersFromStorage() {
     const storedOrders = localStorage.getItem('orders');
@@ -12,9 +14,18 @@ function loadOrdersFromStorage() {
     }
     return [];
 }
+export let orders = loadOrdersFromStorage();
+
 
 if (window.location.pathname.includes("orders.html" || "orders")) {
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadOrdersPage();
+
+
 console.log(orders);
+
+function loadOrdersPage() {
 
 let orderSummaryHTML = '';
 
@@ -79,15 +90,16 @@ orders.forEach((orderItem) => {
       </div>
     </div>
         `;
+
+        document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
+        console.log(orderSummaryHTML);
     });
-
-    document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
-    console.log(orderSummaryHTML);
-};
+}
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+
+//document.addEventListener('DOMContentLoaded', () => {
 
   var cartCountinOrder = cart.length;
  // var myOrdersElement = document.querySelector('.js-myorders');
@@ -107,9 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
       console.error('One or both of the elements not found.');
   }
-});
+//});
+
+
 
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
   window.location.reload();
+}
+});
 }

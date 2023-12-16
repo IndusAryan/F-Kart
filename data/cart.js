@@ -1,5 +1,3 @@
-import { orders } from "../scripts/order.js";
-
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
 if (!cart) {
@@ -99,6 +97,3 @@ export function clearCart() {
     saveToStorage();
 }
 
-export function saveOrders() {
-    localStorage.setItem('orders', JSON.stringify(orders));
-}
