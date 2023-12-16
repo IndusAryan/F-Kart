@@ -1,7 +1,7 @@
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { getProduct } from "../../data/products.js";
-import { getDeliveryOption } from "../../data/deliveryOptions.js";
-import { cart } from "../data/cart.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
+import { cart } from "./cart.js";
 
 export function saveOrders() {
   localStorage.setItem('orders', JSON.stringify(orders));
@@ -89,17 +89,16 @@ orders.forEach((orderItem) => {
       </div>
     </div>
         `;
-
-        document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
-        console.log(orderSummaryHTML);
       });
+      
+      console.log(orderSummaryHTML);
 }
 
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
+  document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
   var cartCountinOrder = cart.length;
  // var myOrdersElement = document.querySelector('.js-myorders');
   var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
@@ -127,9 +126,10 @@ function deleteOrderHistory() {
   window.location.reload();
 }
 
-if (window.location.pathname.includes("orders.html" || "orders")) {
-
+//if (window.location.pathname.includes("orders.html" || "orders")) {
+if (orders.length > 0) {
   loadOrdersPage();
-
 }
+
+//}
 
