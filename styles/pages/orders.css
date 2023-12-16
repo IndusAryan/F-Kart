@@ -228,4 +228,7 @@
   .search-bar,.search-button {
     display: none;
 }
+.flipkart-header-right-section {
+  margin-right: 25px;
+}
 }
