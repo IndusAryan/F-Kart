@@ -91,7 +91,7 @@ orders.forEach((orderItem) => {
         `;
       });
       
-      
+      //console.log(orderSummaryHTML);
 }
 
 
@@ -126,8 +126,8 @@ function deleteOrderHistory() {
   window.location.reload();
 }
 
-
-if (orders.length > 0 && window.location.pathname.includes("orders.html" || "orders")) {
+//if (window.location.pathname.includes("orders.html" || "orders")) {
+if (orders.length > 0) {
   loadOrdersPage();
 }
 
