@@ -84,11 +84,13 @@
 }
 
 
-/*.product-image:hover {
+.product-image:hover {
     transform: scale(1.5);
     border-radius: 20px;
     transition: 3s;
-}*/
+    transition-delay: 400ms;
+}
+
 .flex-container {
     display: flex;
     margin: auto;
