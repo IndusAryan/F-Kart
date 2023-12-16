@@ -17,31 +17,30 @@ function loadOrdersFromStorage() {
 export let orders = loadOrdersFromStorage();
 
 
-if (window.location.pathname.includes("orders.html" || "orders")) {
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadOrdersPage();
 
+
+let orderSummaryHTML = '';
 
 console.log(orders);
 
 function loadOrdersPage() {
 
-let orderSummaryHTML = '';
 
-console.log(orderSummaryHTML);
+
+//console.log(orderSummaryHTML);
 
 const today = dayjs();
 const date = today.format('ddd, MMM D, YYYY');
 
 orders.forEach((orderItem) => {
-
+    
     const deliveryOptionId = orderItem.deliveryOptionId;
     const deliveryOption = getDeliveryOption(deliveryOptionId);
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
-    console.log(orderSummaryHTML);
+    //console.log(orderSummaryHTML);
     
         const productId = orderItem.productId;
         const matchingProduct = getProduct(productId);
@@ -93,13 +92,13 @@ orders.forEach((orderItem) => {
 
         document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
         console.log(orderSummaryHTML);
-    });
+      });
 }
 
 
 
 
-//document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   var cartCountinOrder = cart.length;
  // var myOrdersElement = document.querySelector('.js-myorders');
@@ -119,7 +118,7 @@ orders.forEach((orderItem) => {
   } else {
       console.error('One or both of the elements not found.');
   }
-//});
+});
 
 
 
@@ -127,5 +126,10 @@ function deleteOrderHistory() {
   localStorage.removeItem('orders');
   window.location.reload();
 }
-});
+
+if (window.location.pathname.includes("orders.html" || "orders")) {
+
+  loadOrdersPage();
+
 }
+
