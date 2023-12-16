@@ -109,8 +109,13 @@
     .flex-container {
     gap: 15px;
     padding: 2px;
+    max-width: 100px;
     border: none;
     }
+    .category {
+      width: 60px;
+      font-size: 12px;
+  }
 }
 
 .category {
