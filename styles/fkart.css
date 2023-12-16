@@ -84,11 +84,13 @@
 }
 
 
-/*.product-image:hover {
+.product-image:hover {
     transform: scale(1.5);
     border-radius: 20px;
     transition: 3s;
-}*/
+    transition-delay: 400ms;
+}
+
 .flex-container {
     display: flex;
     margin: auto;
@@ -109,8 +111,13 @@
     .flex-container {
     gap: 15px;
     padding: 2px;
+    max-width: 100px;
     border: none;
     }
+    .category {
+      width: 60px;
+      font-size: 12px;
+  }
 }
 
 .category {
