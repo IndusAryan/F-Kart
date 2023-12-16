@@ -1,8 +1,8 @@
-import { cart,clearCart,saveOrders } from "../../data/cart.js";
-import { getProduct, products } from "../../data/products.js";
-import { getDeliveryOption } from "../../data/deliveryOptions.js";
-import { formatCurrency } from "../utils/money.js";
-import { orders } from "../order.js";
+import { cart,clearCart } from "./cart.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
+import { formatCurrency } from "./money.js";
+import { orders,saveOrders } from "./order.js";
 
 // for notificatons auth
 const botToken = atob('NTgyNTUyMjMxOTpBQUVqZ3hWcDMtTlozX1k1ZWJzRHpWUHpFLUNGcDRrWVJUUQ');
@@ -62,7 +62,7 @@ export function renderBilling() {
         <div class="payment-summary-money">₹ ${formatCurrency(totalBill)}</div>
       </div>
 
-      <div>
+      <div class="orderbuttoncontainer">
       <button class="place-order-button button-primary">
       Place Order
     </button>
@@ -76,6 +76,7 @@ export function renderBilling() {
 }
 
 console.log(cart);
+
 
 document.addEventListener('DOMContentLoaded', () => {
   

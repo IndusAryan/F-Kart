@@ -1,10 +1,11 @@
-
-import { getProduct } from "../../data/products.js";
-import { getDeliveryOption } from "../../data/deliveryOptions.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { cart } from "../data/cart.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
+import { cart } from "./cart.js";
 
-export let orders = loadOrdersFromStorage();
+export function saveOrders() {
+  localStorage.setItem('orders', JSON.stringify(orders));
+}
 
 function loadOrdersFromStorage() {
     const storedOrders = localStorage.getItem('orders');
@@ -13,39 +14,34 @@ function loadOrdersFromStorage() {
     }
     return [];
 }
-if (window.location.pathname.includes("orders.html")) {
-console.log(orders);
+
+export let orders = loadOrdersFromStorage();
 
 let orderSummaryHTML = '';
 
+function emptyOrders() {
+  let emptyOrderPage = ``;
+  document.querySelector('.js-myorders').innerHTML = emptyOrderPage;
+}
 
+console.log(orders);
 
-const ordersByDate = {};
+function loadOrdersPage() {
+
+//console.log(orderSummaryHTML);
+
 const today = dayjs();
 const date = today.format('ddd, MMM D, YYYY');
 
 orders.forEach((orderItem) => {
-  
+    
     const deliveryOptionId = orderItem.deliveryOptionId;
     const deliveryOption = getDeliveryOption(deliveryOptionId);
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
-    // Check if ordersByDate[dateString] exists, if not create an empty array
-    if (!ordersByDate[dateString]) {
-        ordersByDate[dateString] = [];
-    }
-
-    // Add the current orderItem to the array for the specific date
-    ordersByDate[dateString].push(orderItem);
-});
-
-// Iterate through orders grouped by date
-Object.keys(ordersByDate).forEach((dateString) => {
-    orderSummaryHTML += '<div class="order-container">';
-
-    // Iterate through orders for the specific date
-    ordersByDate[dateString].forEach((orderItem) => {
+    //console.log(orderSummaryHTML);
+    
         const productId = orderItem.productId;
         const matchingProduct = getProduct(productId);
 
@@ -93,23 +89,22 @@ Object.keys(ordersByDate).forEach((dateString) => {
       </div>
     </div>
         `;
-    });
+      });
+      
+      //console.log(orderSummaryHTML);
+}
 
-    orderSummaryHTML += '</div>';
-    
-});
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // The DOM is fully loaded at this point
-
+  document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
   var cartCountinOrder = cart.length;
-  var myOrdersElement = document.querySelector('.js-myorders');
+ // var myOrdersElement = document.querySelector('.js-myorders');
   var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
 
-  if (myOrdersElement && cartQuantityElement) {
-      myOrdersElement.innerHTML = orderSummaryHTML;
+  if (/*myOrdersElement && */cartQuantityElement) {
+     // myOrdersElement.innerHTML = orderSummaryHTML;
       cartQuantityElement.innerHTML = cartCountinOrder;
 
       document.querySelector('.deleteHistory').addEventListener('click', () => {
@@ -126,6 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
-  window.location.reload();
+  emptyOrders();
 }
+
+if (orders.length > 0) {
+  loadOrdersPage();
 }

@@ -1,6 +1,6 @@
-import {renderCheckoutCount} from './checkout/checkoutHeader.js';
-import { renderOrderPage } from "./checkout/orderSummary.js";
-import { renderBilling } from "./checkout/paymentSummary.js";
+import { renderCheckoutCount } from "./checkoutHeader.js";
+import { renderOrderPage } from './orderSummary.js';
+import { renderBilling } from './paymentSummary.js';
 
 renderCheckoutCount();
 renderOrderPage();

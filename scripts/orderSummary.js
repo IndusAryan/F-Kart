@@ -1,9 +1,9 @@
-import { cart, removeFromCart, saveToStorage, updateDeliveryOption } from "../../data/cart.js";
-import { products, getProduct } from "../../data/products.js";
-import { formatCurrency } from "../utils/money.js";
+import { cart, removeFromCart, saveToStorage, updateDeliveryOption } from "./cart.js";
+import { getProduct } from "./products.js";
+import { formatCurrency } from "./money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
-import { renderBilling } from "./paymentSummary.js";
+import { deliveryOptions, getDeliveryOption } from "./deliveryOptions.js";
+import { renderBilling} from "./paymentSummary.js";
 import { renderCheckoutCount } from "./checkoutHeader.js";
 
 export function renderOrderPage() {
@@ -133,6 +133,7 @@ export function renderOrderPage() {
             renderOrderPage();
             renderBilling();
             saveToStorage();
+            renderCheckoutCount();
             window.location.reload();
         });
     });
