@@ -1,7 +1,6 @@
-
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
-import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { cart } from "../data/cart.js";
 
 export let orders = loadOrdersFromStorage();
@@ -13,39 +12,26 @@ function loadOrdersFromStorage() {
     }
     return [];
 }
-if (window.location.pathname.includes("orders.html")) {
+
+if (window.location.pathname.includes("orders.html" || "orders")) {
 console.log(orders);
 
 let orderSummaryHTML = '';
 
+console.log(orderSummaryHTML);
 
-
-const ordersByDate = {};
 const today = dayjs();
 const date = today.format('ddd, MMM D, YYYY');
 
 orders.forEach((orderItem) => {
-  
+
     const deliveryOptionId = orderItem.deliveryOptionId;
     const deliveryOption = getDeliveryOption(deliveryOptionId);
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D');
 
-    // Check if ordersByDate[dateString] exists, if not create an empty array
-    if (!ordersByDate[dateString]) {
-        ordersByDate[dateString] = [];
-    }
-
-    // Add the current orderItem to the array for the specific date
-    ordersByDate[dateString].push(orderItem);
-});
-
-// Iterate through orders grouped by date
-Object.keys(ordersByDate).forEach((dateString) => {
-    orderSummaryHTML += '<div class="order-container">';
-
-    // Iterate through orders for the specific date
-    ordersByDate[dateString].forEach((orderItem) => {
+    console.log(orderSummaryHTML);
+    
         const productId = orderItem.productId;
         const matchingProduct = getProduct(productId);
 
@@ -95,21 +81,20 @@ Object.keys(ordersByDate).forEach((dateString) => {
         `;
     });
 
-    orderSummaryHTML += '</div>';
-    
-});
+    document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
+    console.log(orderSummaryHTML);
+};
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // The DOM is fully loaded at this point
 
   var cartCountinOrder = cart.length;
-  var myOrdersElement = document.querySelector('.js-myorders');
+ // var myOrdersElement = document.querySelector('.js-myorders');
   var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
 
-  if (myOrdersElement && cartQuantityElement) {
-      myOrdersElement.innerHTML = orderSummaryHTML;
+  if (/*myOrdersElement && */cartQuantityElement) {
+     // myOrdersElement.innerHTML = orderSummaryHTML;
       cartQuantityElement.innerHTML = cartCountinOrder;
 
       document.querySelector('.deleteHistory').addEventListener('click', () => {
@@ -127,5 +112,4 @@ document.addEventListener('DOMContentLoaded', () => {
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
   window.location.reload();
-}
 }
