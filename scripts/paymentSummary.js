@@ -62,7 +62,7 @@ export function renderBilling() {
         <div class="payment-summary-money">₹ ${formatCurrency(totalBill)}</div>
       </div>
 
-      <div>
+      <div class="orderbuttoncontainer">
       <button class="place-order-button button-primary">
       Place Order
     </button>
@@ -76,6 +76,7 @@ export function renderBilling() {
 }
 
 console.log(cart);
+
 
 document.addEventListener('DOMContentLoaded', () => {
   

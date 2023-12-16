@@ -14,19 +14,19 @@ function loadOrdersFromStorage() {
     }
     return [];
 }
+
 export let orders = loadOrdersFromStorage();
 
-
-
-
-
 let orderSummaryHTML = '';
+
+function emptyOrders() {
+  let emptyOrderPage = ``;
+  document.querySelector('.js-myorders').innerHTML = emptyOrderPage;
+}
 
 console.log(orders);
 
 function loadOrdersPage() {
-
-
 
 //console.log(orderSummaryHTML);
 
@@ -119,17 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
-  window.location.reload();
+  emptyOrders();
 }
 
-//if (window.location.pathname.includes("orders.html" || "orders")) {
 if (orders.length > 0) {
   loadOrdersPage();
 }
-
-//}
-

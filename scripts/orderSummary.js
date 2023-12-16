@@ -3,7 +3,7 @@ import { getProduct } from "./products.js";
 import { formatCurrency } from "./money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from "./deliveryOptions.js";
-import { renderBilling } from "./paymentSummary.js";
+import { renderBilling} from "./paymentSummary.js";
 import { renderCheckoutCount } from "./checkoutHeader.js";
 
 export function renderOrderPage() {
@@ -133,6 +133,7 @@ export function renderOrderPage() {
             renderOrderPage();
             renderBilling();
             saveToStorage();
+            renderCheckoutCount();
             window.location.reload();
         });
     });
