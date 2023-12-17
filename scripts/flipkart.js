@@ -6,7 +6,7 @@ let productsHTML = '';
 
 products.forEach((product) => {
     productsHTML += `
-    <div class="product-container">
+    <div class="product-container" data-keywords="${product.keywords.join(' ')}">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -123,4 +123,26 @@ window.addEventListener('scroll', function() {
   } else {
     footer.style.display = 'none';
   }
+});
+
+// search function that hides other product container if keywords are absent, i attached keywords as dataset on line 9 of this file
+document.addEventListener('DOMContentLoaded', function () {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', filterProducts);
+
+  function filterProducts() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const productContainers = document.querySelectorAll('.product-container');
+
+    productContainers.forEach((productContainer) => {
+      const keywords = productContainer.dataset.keywords.toLowerCase();
+      const shouldShow = keywords.includes(searchTerm);
+      productContainer.style.display = shouldShow ? 'block' : 'none';
+    });
+  }
+
+  // Show all product containers initially
+  document.querySelectorAll('.product-container').forEach((productContainer) => {
+    productContainer.style.display = 'block';
+  });
 });
