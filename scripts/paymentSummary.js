@@ -86,11 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Clear the cart and update the orders array
       orders.push(...cart);
       saveOrders();
+      document.querySelector('.place-order-button').style.cursor = 'progress';
+
       document.querySelector('.place-order-button').textContent = 'Checking out...';
       notifyTelegram();
       clearCart();
       
       setTimeout(function() {
+
+      document.querySelector('.place-order-button').style.cursor = 'progress';
+
         document.querySelector('.place-order-button').textContent = 'Order placed ! Redirecting...';
       }, 1000);
 

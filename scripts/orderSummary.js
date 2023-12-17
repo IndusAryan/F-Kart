@@ -120,6 +120,7 @@ export function renderOrderPage() {
             container.remove();
             saveToStorage();
             renderBilling();
+            renderOrderPage();
             renderCheckoutCount();
         });
     });
