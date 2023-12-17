@@ -100,11 +100,11 @@ orders.forEach((orderItem) => {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
   var cartCountinOrder = cart.length;
- // var myOrdersElement = document.querySelector('.js-myorders');
+
   var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
 
-  if (/*myOrdersElement && */cartQuantityElement) {
-     // myOrdersElement.innerHTML = orderSummaryHTML;
+  if (cartQuantityElement) {
+     
       cartQuantityElement.innerHTML = cartCountinOrder;
 
       document.querySelector('.deleteHistory').addEventListener('click', () => {
