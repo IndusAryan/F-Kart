@@ -105,6 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (cartQuantityElement) {
      
+  var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
+
+  if (cartQuantityElement) {
+    
       cartQuantityElement.innerHTML = cartCountinOrder;
 
       document.querySelector('.deleteHistory').addEventListener('click', () => {
