@@ -1,7 +1,7 @@
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-import { getProduct } from "../../data/products.js";
-import { getDeliveryOption } from "../../data/deliveryOptions.js";
-import { cart } from "../data/cart.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
+import { cart } from "./cart.js";
 
 export function saveOrders() {
   localStorage.setItem('orders', JSON.stringify(orders));
@@ -19,10 +19,16 @@ export let orders = loadOrdersFromStorage();
 
 let orderSummaryHTML = '';
 
+function emptyOrders() {
+  let emptyOrderPage = ``;
+  document.querySelector('.js-myorders').innerHTML = emptyOrderPage;
+}
+
 console.log(orders);
 
 function loadOrdersPage() {
 
+//console.log(orderSummaryHTML);
 
 const today = dayjs();
 const date = today.format('ddd, MMM D, YYYY');
@@ -83,16 +89,22 @@ orders.forEach((orderItem) => {
       </div>
     </div>
         `;
-
-        document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
-        console.log(orderSummaryHTML);
       });
+      
+      //console.log(orderSummaryHTML);
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.js-myorders').innerHTML = orderSummaryHTML;
   var cartCountinOrder = cart.length;
+
+  var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
+
+  if (cartQuantityElement) {
+     
   var cartQuantityElement = document.querySelector('.cartQuantityinOrders');
 
   if (cartQuantityElement) {
@@ -111,14 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 function deleteOrderHistory() {
   localStorage.removeItem('orders');
-  window.location.reload();
+  emptyOrders();
 }
 
-if (window.location.pathname.includes("orders.html" || "orders")) {
-
+if (orders.length > 0) {
   loadOrdersPage();
-
 }

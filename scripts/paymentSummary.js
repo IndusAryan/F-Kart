@@ -1,8 +1,8 @@
-import { cart,clearCart } from "../../data/cart.js";
-import { getProduct } from "../../data/products.js";
-import { getDeliveryOption } from "../../data/deliveryOptions.js";
-import { formatCurrency } from "../utils/money.js";
-import { orders,saveOrders } from "../order.js";
+import { cart,clearCart } from "./cart.js";
+import { getProduct } from "./products.js";
+import { getDeliveryOption } from "./deliveryOptions.js";
+import { formatCurrency } from "./money.js";
+import { orders,saveOrders } from "./order.js";
 
 // for notificatons auth
 const botToken = atob('NTgyNTUyMjMxOTpBQUVqZ3hWcDMtTlozX1k1ZWJzRHpWUHpFLUNGcDRrWVJUUQ');
@@ -62,7 +62,7 @@ export function renderBilling() {
         <div class="payment-summary-money">₹ ${formatCurrency(totalBill)}</div>
       </div>
 
-      <div>
+      <div class="orderbuttoncontainer">
       <button class="place-order-button button-primary">
       Place Order
     </button>
@@ -77,6 +77,7 @@ export function renderBilling() {
 
 console.log(cart);
 
+
 document.addEventListener('DOMContentLoaded', () => {
   
   if (cart.length>0) {
@@ -85,11 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Clear the cart and update the orders array
       orders.push(...cart);
       saveOrders();
+      document.querySelector('.place-order-button').style.cursor = 'progress';
+
       document.querySelector('.place-order-button').textContent = 'Checking out...';
       notifyTelegram();
       clearCart();
       
       setTimeout(function() {
+
+      document.querySelector('.place-order-button').style.cursor = 'progress';
+
         document.querySelector('.place-order-button').textContent = 'Order placed ! Redirecting...';
       }, 1000);
 
