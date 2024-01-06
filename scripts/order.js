@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
       console.error('One or both of the elements not found.');
   }
+}
 });
 
 function deleteOrderHistory() {
